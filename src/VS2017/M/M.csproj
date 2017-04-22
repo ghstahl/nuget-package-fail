@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.4</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="B.DependsOnSome.Package" Version="1.0.0" />
+    <PackageReference Include="F.DoesNotDependOnAnything.Package" Version="1.0.0" />
+  </ItemGroup>
+
+</Project>

@@ -60,8 +60,42 @@ Post Uninstall of B
 
 The good news is that this is fixed in the new VS 2017 projects that do not use packages.config to manage nugets.  I can't imagine how this dependency blunder made it this far, but better late than never.
 
+In the netstandard and core projects, dependencies are managed in the csproj file.
+
+```xml
+Pre Update
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.4</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="B.DependsOnSome.Package" Version="1.0.0" />
+    <PackageReference Include="F.DoesNotDependOnAnything.Package" Version="1.0.0" />
+  </ItemGroup>
+
+</Project>
+```
 
 
+
+```xml
+Post Update
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.4</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="B.DependsOnSome.Package" Version="1.0.1" />
+    <PackageReference Include="F.DoesNotDependOnAnything.Package" Version="1.0.0" />
+  </ItemGroup>
+
+</Project>
+```
+You will notice that the G nuget is nowhere to be seen.  That dependency is discovered and not recorded.
 
 
 
